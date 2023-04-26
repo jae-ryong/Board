@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="example.Board">
+
+	<select id="selectBoardList" resultType="Board">
+			<![CDATA[		
+			SELECT board_number,board_title, board_author,
+			to_char(board_date,'yyyy-mm-dd')as board_date,board_count,board_contents
+			FROM board
+			order by board_number asc
+			]]>
+	</select>
+
+	<select id="insertBoardList" parameterType="Board"
+		resultType="Board">
+			<![CDATA[		
+			insert into board (board_title, board_author, board_date, board_contents)
+            values (#{board_title},#{board_author},sysdate,#{board_contents})
+			]]>
+	</select>
+	
+	<select id="selectBoard" parameterType="Board"
+		resultType="Board">
+			<![CDATA[		
+			SELECT board_number,board_title, board_author,
+			to_char(board_date,'yyyy-mm-dd')as board_date,board_count,board_contents
+			FROM board
+			where board_number=#{board_number}
+			]]>
+	</select>
+	
+	<select id="delete" parameterType="Board"
+		resultType="Board">
+			<![CDATA[		
+			DELETE FROM board WHERE board_number=#{board_number}
+			]]>
+	</select>
+	
+	<select id="update" parameterType="Board"
+		resultType="Board">
+			<![CDATA[		
+			UPDATE board
+			SET board_title = #{board_title}, board_contents = #{board_contents}
+			WHERE board_number = #{board_number}
+			]]>
+	</select>
+</mapper>

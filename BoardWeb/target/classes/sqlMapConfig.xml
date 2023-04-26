@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org/DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<properties resource="./driver.properties" />
+	
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+	
+
+	<typeAliases>
+		<typeAlias alias="Login" type="com.login.vo.LoginVO" />
+		<typeAlias alias="Board" type="com.board.vo.BoardVO" />
+		<typeAlias alias="Dat" type="com.dat.vo.DatVO" />
+	</typeAliases>
+	
+
+	
+	<environments default="development">
+		<!-- DB 연결 설정 정보 선언 -->
+		<environment id="development">
+			<transactionManager type="JDBC">
+			</transactionManager>
+			<dataSource type="POOLED">
+				<property name="driver" value="${db.driver}" />
+				<property name="url" value="${db.url}" />
+				<property name="username" value="${db.username}" />
+				<property name="password" value="${db.password}" />
+
+				<property name="poolMaximumActiveConnections" value="20" />
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<mappers>
+		<mapper resource="./sqlmap/Login.xml"/>
+		<mapper resource="./sqlmap/Board.xml"/>
+		<mapper resource="./sqlmap/Dat.xml"/>
+	</mappers>
+	
+</configuration>

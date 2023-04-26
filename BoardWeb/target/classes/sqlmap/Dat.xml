@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="example.Dat">
+
+	<select id="insert" parameterType="Dat"
+		resultType="Dat">
+			<![CDATA[		
+			insert into dat (dat_number,dat_author,dat_coments)
+            values (#{dat_number},#{dat_author},#{dat_coments})
+			]]>
+	</select>
+	
+	<select id="select" parameterType="Dat"
+		resultType="Dat">
+			<![CDATA[		
+			SELECT dat_author,dat_coments
+			FROM dat
+			where dat_number=#{dat_number}
+			]]>
+	</select>
+	
+	
+</mapper>
